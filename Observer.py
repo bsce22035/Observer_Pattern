@@ -36,6 +36,10 @@ class StudentPortal(Observer):
 class AnalyticsDashboard(Observer):
     def update(self, student_name, grade):
         print(f"[Analytics Dashboard] Logging: {student_name} got {grade}.")
+    
+class mobileNotification(Observer):
+    def update(self, student_name, grade):
+        print(f"[Mobile Notification] notification sent to: {student_name}: You got {grade}")
 
 # Usage
 if __name__ == "__main__":
@@ -44,10 +48,13 @@ if __name__ == "__main__":
     parent = ParentPortal()
     student = StudentPortal()
     dashboard = AnalyticsDashboard()
+    mobile = mobileNotification()
 
     gradebook.add_observer(parent)
     gradebook.add_observer(student)
     gradebook.add_observer(dashboard)
+    gradebook.add_observer(mobile)
 
     gradebook.enter_grade("Alice", 92)
     gradebook.enter_grade("Bob", 85)
+    gradebook.enter_grade("Alishba", 90)
